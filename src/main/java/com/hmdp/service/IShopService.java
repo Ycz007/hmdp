@@ -1,5 +1,6 @@
 package com.hmdp.service;
 
+import com.hmdp.dto.Result;
 import com.hmdp.entity.Shop;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IShopService extends IService<Shop> {
 
+    Result QueryById(Long id);
+
+    //更新店铺
+    Result updateShop(Shop shop);
+
+    //根据地理位置查询
+    Result queryShopByType(Integer typeId, Integer current, Double x, Double y);
 }

@@ -15,12 +15,28 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
+        <!-- 修复 Spring Data Redis 栈溢出问题的版本 -->
+        <spring-data-redis.version>2.6.0</spring-data-redis.version>
     </properties>
     <dependencies>
+        <!-- Redis 依赖 - 排除有问题的版本并引入修复版本 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.data</groupId>
+                    <artifactId>spring-data-redis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- 引入修复后的 Spring Data Redis 版本 -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
@@ -63,6 +79,12 @@
             <artifactId>redisson-spring-boot-starter</artifactId>
             <version>3.17.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
